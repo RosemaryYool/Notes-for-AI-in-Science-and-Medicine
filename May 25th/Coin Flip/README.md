@@ -1,4 +1,4 @@
-Certainly! Here's the code in Markdown format:
+Here's the code in Markdown format:
 
 ```markdown
 # Coin Flip Game
