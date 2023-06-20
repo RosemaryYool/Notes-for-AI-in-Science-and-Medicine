@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expert System Training</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+  <button class="tablinks" onclick="openTab(event, 'About')">About</button>
+  <button class="tablinks" onclick="openTab(event, 'Train System')">Train System</button>
+  <button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
+</div>
+
+<div id="Home" class="tabcontent">
+  <h3>Welcome to Expert System Training</h3>
+  <p>This is intended to be an expert system designed to train a machine using datasets from MedMNIST.</p>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About Data</h3>
+  <p>The dataset chosen for this expert system is one of MedMNIST's sets. The MedMNIST itself contains a total of twelve 2D image datasets and six 3D image datasets.
+    For this system, the dataset DermaMNIST will be the focus set. </p>
+    <h3>More about Dermanmnist</h3>
+    <p>The modality for the DermaMNIST dataset is a <em>Dermatoscope</em>. There were a total of 10, 015 samples in this set.
+    The aforementioned dermatoscope is a popularly used medical instrument amongst dermatologists and medical professionals alike. These instruments work
+    by using light and magnification against the skin.
+    </p>
+
+    <div id="tab1" class="tabcontent">
+      <h3>Dermatoscope</h3>
+      <img src="{{ url_for('static', filename='dermascope.jpg') }}" alt="Dermatoscope Image">
+    </div>
+</div>
+
+<div id="Train System" class="tabcontent">
+  <h3>Train System</h3>
+  <p>This is the content of the Train System page.</p>
+  <form action="/train" method="POST">
+      <button type="submit">Train Model</button>
+  </form>
+  <div id="trainingResults">
+    {% if training_results %}
+      <h3>Training Results</h3>
+      <p>{{ training_results }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<div id="Images" class="tabcontent">
+    <h3>Sample Images</h3>
+    <p>Here, you can click the button below and sample images from the DermaMNIST dataset will be generated
+    and saved as PNG files on your device.
+    </p>
+</div>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
+
+</body>
+</html>
