@@ -1,0 +1,36 @@
+body {
+  background-color: #f2f5f5;
+}
+
+/* CSS styling for tabs */
+.tab {
+  overflow: hidden;
+  background-color: #007BFF;
+}
+
+.tab button {
+  background-color: #00A8FF;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #00A8FF;
+}
+
+.tab button.active {
+  background-color: #00A8FF;
+}
+
+/* CSS styling for tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
