@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Project</title>
+    <link rel="stylesheet" href="https://williamedwardhahn.github.io/AI_Science_Medicine/dashboard.css">
+<head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Dashboard CSS - Demo</title>
+            <link rel="stylesheet" href="https://williamedwardhahn.github.io/AI_Science_Medicine/dashboard.css">
+        </head>
+        <body style="background-color: #90f1f5;"> 
+            <header>
+                <h1>Welcome to the Dashboard!</h1>
+            </header>
+            <nav>
+                <input type="checkbox" id="nav-menu-btn" />
+                <label for="nav-menu-btn"></label>
+                <ul>
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">My Projects</a></li>
+                </ul>
+            </nav>
+            <main class="container-fluid">
+              <div class="row">
+
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="panel">
+                    <header>
+                      <h2>Getting Started</h2>
+                    </header>
+                    <main>
+                     <p>The purpose of this dashboard was to experiment with 
+                     the codes and methods I have learned throughout the course. 
+                     My goal for this specific project was to use the webcam connected
+                     to the device and have the user create their own data. This data 
+                     would then be used to train a simple CNN and record the loss function.
+                     </p>
+                    </main>
+                    <footer>
+                    </footer>
+                  </div>
+                </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <div class="panel info">
+            <header>
+              <h2>About</h2>
+            </header>
+            <main>
+              <p>In this dashboard, you will be able to capture your images, 
+              which will be used to train a Convolutional Neural Network (CNN)
+              model. The intended purpose of this training is to later be able 
+              to use designated hand gestures to turn the volume of sound up or 
+              down. 
+              </p>
+            </main>
+            <footer>
+            </footer>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <div class="panel double success">
+            <header>
+              <h2>Hand Gestures to Adjust Volume</h2>
+            </header>
+            <main>
+              <img src="/home/mpcr/Desktop/Microscope/one_and_two_hands.png" alt="hand gestures" />
+              <p>In order to run this program correctly, please begin by taking images of your 
+              own hand gestures. The hand gestures used will be the hand gesture for the number 
+              "1" and "2". The program is designed to capture 20 images in 1 second intervals. 
+              Please pose your hands for approximately 10 images for each gesture, providing 
+              each gesture with a slight variation. For example, for the number "2", turn your
+              hands palms towards the camera as well as away. 
+              </p>
+            </main>
+            <footer>
+            </footer>
+          </div>
+        </div>
+
+        <div class="col-xs-9 col-sm-9 col-md-5">
+          <div class="panel double">
+            <header>
+              <h2>Gathering Data</h2>
+            </header>
+            <main>
+              <form>
+                <div class="text-center">
+                 <button id="capture-button" class="info">Capture Image</button>
+                </div>
+                        <script>
+        			document.getElementById("capture-button").addEventListener("click", function(event) {
+            				event.preventDefault(); // Prevent the default button click behavior
+
+            				// Send a POST request to the Flask endpoint to trigger the image capture and processing
+            				fetch('/capture', { method: 'POST' })
+                				.then(function(response) {
+                    					if (response.ok) {
+                        					alert('Image captured and processed successfully');
+                    					} else {
+                        					alert('Failed to capture image');
+                    					}
+                				})
+                				.catch(function(error) {
+                    					alert('Error: ' + error);
+                				});
+        				});
+			</script>
+                </div>
+              </form>
+            </main>
+          </div>
+        </div>
+
+      </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <small>
+                MPCR Lab
+            </small>
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById("capture-button").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the form submission if necessary
+            captureFrame();
+        });
+
+        function captureFrame() {
+            // Initialize the webcam
+            var video = document.createElement('video');
+            video.width = 640;
+            video.height = 480;
+            var constraints = { video: true };
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(error) {
+                    console.error('Error accessing the webcam: ', error);
+                });
+
+            // Wait for the video to be ready
+            video.addEventListener('loadedmetadata', function() {
+                // Create a canvas element to draw the video frame
+                var canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                var context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // Convert the captured frame to an image file
+                var image = canvas.toDataURL('image/jpeg');
+
+                // Create a link element to download the image
+                var link = document.createElement('a');
+                link.href = image;
+                link.download = 'captured_image.jpg';
+                link.click();
+
+                // Stop the video stream and remove the video element
+                video.srcObject.getVideoTracks().forEach(function(track) {
+                    track.stop();
+                });
+                video.remove();
+            });
+        }
+    </script>
+</body>
+</html>
