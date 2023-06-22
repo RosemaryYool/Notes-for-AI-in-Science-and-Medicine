@@ -38,6 +38,7 @@ Here's a high-level example of how you can approach training a CNN model for han
    - If the model's performance is not satisfactory, you can experiment with hyperparameter tuning, such as learning rate, batch size, or model architecture modifications.
    - You can also try data augmentation techniques to increase the dataset size and improve the model's ability to generalize.
 
-It's important to note that training a machine learning model requires a significant amount of computational resources, especially for deep learning models. You may consider using a GPU-accelerated environment like Google Colab or utilizing cloud-based platforms like AWS or Google Cloud for efficient training.
-
-I hope this gives you an overview of the steps involved in training a machine learning model for hand gesture recognition. If you have any specific questions or need further guidance on any of these steps, feel free to ask!
+In the context of hand gesture recognition, the preprocessing steps we performed can be considered as feature extraction. Feature extraction involves transforming the raw input data (in this case, hand gesture images) into a format that is suitable for the machine learning model to learn from.
+In the preprocessing steps, we performed operations such as resizing the images, converting them to grayscale, and normalizing the pixel values. These operations help in standardizing the input images and extracting relevant features or patterns that can be used by the machine learning model to differentiate between different hand gestures.
+By performing these preprocessing steps, you have extracted the essential features from the images and prepared them for training your machine learning model. The preprocessed images can now be used as input to the model for further training and recognition.
+In summary, the preprocessing steps we performed can be considered as a form of feature extraction, as they transformed the raw image data into a more meaningful representation that captures the relevant information for hand gesture recognition.
