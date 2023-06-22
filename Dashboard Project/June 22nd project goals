@@ -1,0 +1,13 @@
+The code now captures images from the webcam when you click the "Capture Images" button on the server. It saves the captured images into two folders (`folder1` and `folder2`), with each folder corresponding to a different label or class.
+
+After capturing the images, the code preprocesses them, converts them to a PyTorch tensor, and creates a `TensorDataset`. Then it trains a CNN model using the captured images as the training dataset. The model is trained for a specified number of epochs, and the loss is printed after each epoch.
+
+So, in summary, your code performs the following steps:
+
+1. Captures images from the webcam and saves them into two separate folders.
+2. Preprocesses the captured images and prepares them as input data for training.
+3. Trains a CNN model using the captured images as the training dataset.
+
+You can further enhance the code based on your requirements. For example, you can add validation and testing data, implement data augmentation techniques, save and load the trained model, and add functionality to make predictions on new images.
+
+If you have any more questions or need assistance with any specific aspect, feel free to ask!
